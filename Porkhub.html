@@ -1,0 +1,298 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Pork Hub</title>
+  <style>
+    /* General Styles */
+    body {
+    font-family: "Helvetica Neue", Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #000;
+    color: #fff;
+    }
+
+    h1 {
+    text-align: center;
+    padding: 20px;
+    font-size: 3rem;
+    font-weight: bold;
+    color: #fff;
+    }
+
+    .hub {
+    background-color: #f90;
+    color: #000;
+    padding: 5px 10px;
+    border-radius: 5px;
+    }
+
+    /* Navbar */
+    .navbar {
+    background-color: #1c1c1c;
+    padding: 10px 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    }
+
+    .navbar a {
+    color: #fff;
+    text-decoration: none;
+    margin: 0 10px;
+    font-size: 16px;
+    }
+
+    .navbar a:hover {
+    color: #f90;
+    }
+
+    /* Product Grid */
+    .container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 20px;
+    padding: 20px;
+    }
+
+    .product {
+    position: relative;
+    background-color: #1c1c1c;
+    border: 1px solid #333;
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease;
+    }
+
+    .product:hover {
+    transform: translateY(-5px);
+    }
+
+    .product img {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+    }
+
+    .hover-effect {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.7);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    }
+
+    .product:hover .hover-effect {
+    opacity: 1;
+    }
+
+    .hover-effect button {
+    background: #f90;
+    color: #fff;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+    transition: background 0.3s ease;
+    }
+
+    .hover-effect button:hover {
+    background: #e07c00;
+    }
+
+    /* Modal for video */
+    .modal-video {
+    display: none;
+    position: fixed;
+    z-index: 9999;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.8);
+    justify-content: center;
+    align-items: center;
+    }
+
+    .modal-content-video {
+    background-color: #f90;
+    padding: 20px;
+    width: 80%;
+    max-width: 640px;
+    position: relative;
+    border: 5px solid #040404;
+    border-radius: 10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    }
+
+    .modal-content-video video {
+    max-width: 100%;
+    height: auto;
+    border-radius: 5px;
+    }
+
+    .modal-content-video .close {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    font-size: 24px;
+    font-weight: bold;
+    color: #fff;
+    cursor: pointer;
+    }
+
+    .modal-video.show .modal-content-video {
+    animation: spring-in 0.5s ease-out;
+    }
+
+    @keyframes spring-in {
+    0% {
+    transform: scale(0.5);
+    }
+    30% {
+    transform: scale(1.2);
+    }
+    50% {
+    transform: scale(0.9);
+    }
+    70% {
+    transform: scale(1.1);
+    }
+    100% {
+    transform: scale(1);
+    }
+    }
+  </style>
+</head>
+<body>
+  <!-- Navbar -->
+  <div class="navbar">
+    <a href="#">Home</a>
+    <a href="#">Products</a>
+    <a href="#">Contact</a>
+  </div>
+
+  <!-- Title -->
+  <h1>Pork <span class="hub">Hub</span></h1>
+
+  <!-- Product Grid -->
+  <div class="container">
+    <!-- Repeat the product 10 times with the mismo image -->
+    <div class="product">
+      <img src="uncook.jpeg" alt="Pork Product 1">
+      <div class="hover-effect">
+        <button onclick="playVideo()">Buy It ₱300.00</button>
+      </div>
+    </div>
+    <div class="product">
+      <img src="hamcut.jpeg" alt="Pork Product 2">
+      <div class="hover-effect">
+        <button onclick="playVideo()">Buy It ₱500.00</button>
+      </div>
+    </div>
+    <div class="product">
+      <img src="circle.jpeg" alt="Pork Product 3">
+      <div class="hover-effect">
+        <button onclick="playVideo()">Buy It ₱850.00</button>
+      </div>
+    </div>
+    <div class="product">
+      <img src="crown.jpeg" alt="Pork Product 4">
+      <div class="hover-effect">
+        <button onclick="playVideo()">Buy It ₱450.00</button>
+      </div>
+    </div>
+    <div class="product">
+      <img src="hamleg.jpeg" alt="Pork Product 5">
+      <div class="hover-effect">
+        <button onclick="playVideo()">Buy It ₱500.00</button>
+      </div>
+    </div>
+    <div class="product">
+      <img src="bacon.jpeg" alt="Pork Product 6">
+      <div class="hover-effect">
+        <button onclick="playVideo()">Buy It ₱380.00</button>
+      </div>
+    </div>
+    <div class="product">
+      <img src="ribs.jpeg" alt="Pork Product 7">
+      <div class="hover-effect">
+        <button onclick="playVideo()">Buy It ₱550.00</button>
+      </div>
+    </div>
+    <div class="product">
+      <img src="lion.jpeg" alt="Pork Product 8">
+      <div class="hover-effect">
+        <button onclick="playVideo()">Buy It ₱400.0</button>
+      </div>
+    </div>
+    <div class="product">
+      <img src="porkchop.jpeg" alt="Pork Product 9">
+      <div class="hover-effect">
+        <button onclick="playVideo()">Buy It ₱480.00</button>
+      </div>
+    </div>
+    <div class="product">
+      <img src="menudo.jpeg" alt="Pork Product 10">
+      <div class="hover-effect">
+        <button onclick="playVideo()">Buy It ₱380.00</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Modal for video -->
+  <div id="videoModal" class="modal-video">
+    <div class="modal-content-video">
+      <span class="close" onclick="closeModal()">&times;</span>
+      <video id="video">
+        <source src="buy.mp4" type="video/mp4">
+        Your browser does not support the video tag.
+      </video>
+    </div>
+  </div>
+
+  <script>
+    function playVideo() {
+    const modal = document.getElementById('videoModal');
+    const video = document.getElementById('video');
+
+    modal.style.display = 'flex';
+    modal.classList.add('show');
+    video.play();
+
+    video.onended = function () {
+    closeModal();
+    };
+    }
+
+    function closeModal() {
+    const modal = document.getElementById('videoModal');
+    const video = document.getElementById('video');
+
+    modal.classList.add('hide');
+    setTimeout(() => {
+    modal.style.display = 'none';
+    modal.classList.remove('show', 'hide');
+    }, 500);
+
+    video.pause();
+    video.currentTime = 0;
+    }
+  </script>
+</body>
+</html>
